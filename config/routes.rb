@@ -4,20 +4,26 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
-namespace :customers do
-  get 'dashboard', to: "pages#dashboard", as: "dashboard"
-  resources :requests, only: [:new, :create, :update, :destroy]
+  namespace :customers do
+    get 'dashboard', to: "pages#dashboard", as: "dashboard"
+    resources :users do
+      resources :requests, only: [:new, :create, :update, :destroy]
+    end
+  end
+
+
+
+
+  namespace :owners do
+    get 'dashboard', to: "pages#dashboard", as: "dashboard"
+    resources :users do
+    resources :pets, only: [:new, :create, :update, :destroy]
+  end
 end
 
+  resources :pets, only: [:index, :show]
 
 
-
-namespace :owners do
-  get 'dashboard', to: "pages#dashboard", as: "dashboard"
-  resources :pets, only: [:new, :create, :update, :destroy]
-end
-
-resources :pets, only: [:index, :show]
 
 
 
