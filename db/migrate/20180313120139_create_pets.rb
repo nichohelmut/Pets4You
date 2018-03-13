@@ -6,6 +6,7 @@ class CreatePets < ActiveRecord::Migration[5.1]
       t.string :category
       t.text :description
       t.string :photo
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
